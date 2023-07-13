@@ -1,2 +1,4 @@
-# rollup-ts-template
-A rollup template for library development.
+# allbox
+A collection of JavaScript utilities.
+
+It's not usable now.

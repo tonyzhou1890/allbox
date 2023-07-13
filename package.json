@@ -1,7 +1,7 @@
 {
-  "name": "rollup-ts-template",
+  "name": "allbox",
   "version": "0.0.0",
-  "description": "A rollup template for library development.",
+  "description": "A collection of JavaScript utilities",
   "main": "./dist/index.cjs.js",
   "module": "./dist/index.esm.js",
   "types": "./dist/index.d.ts",
@@ -18,19 +18,16 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/tonyzhou1890/rollup-ts-template.git"
+    "url": "git+https://github.com/tonyzhou1890/allbox.git"
   },
   "bugs": {
-    "url": "https://github.com/tonyzhou1890/rollup-ts-template/issues"
+    "url": "https://github.com/tonyzhou1890/allbox/issues"
   },
-  "homepage": "https://github.com/tonyzhou1890/rollup-ts-template#readme",
+  "homepage": "https://github.com/tonyzhou1890/allbox#readme",
   "keywords": [
-    "gif",
-    "player",
-    "canvas",
-    "rollup-ts-template",
-    "gif-player",
-    "gif-parser"
+    "JavaScript",
+    "toolbox",
+    "utilities"
   ],
   "author": "tonyzhou1890",
   "license": "MIT",
