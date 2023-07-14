@@ -3,3 +3,5 @@ examples
 __tests__
 docs
 coverage
+build
+rollup.config.mjs

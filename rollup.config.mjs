@@ -29,7 +29,7 @@ export default [
       {
         dir: 'dist',
         format: 'umd',
-        name: 'Utils',
+        name: 'Allbox',
         entryFileNames: '[name].umd.js'
       }
     ],
@@ -47,7 +47,7 @@ export default [
     output: {
       dir: 'dist',
       format: 'umd',
-      name: 'Utils',
+      name: 'Allbox',
       entryFileNames: '[name].umd.min.js'
     },
     plugins: [resolve(), commonjs(), webWorkerLoader(), typescript({
@@ -58,7 +58,7 @@ export default [
   },
   {
     input: Object.fromEntries(
-      glob.sync('src/**/*.ts').filter(file => !file.includes('/types/') && !file.includes('/worker/')).map(file => [
+      glob.sync('src/*.ts').map(file => [
         // This remove `src/` as well as the file extension from each
         // file, so e.g. src/nested/foo.js becomes nested/foo
         path.relative(

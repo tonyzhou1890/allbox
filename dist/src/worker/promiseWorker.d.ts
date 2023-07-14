@@ -1,6 +1,3 @@
-import type { Add } from '../add';
-import type { Sub } from '../sub';
-import type { WorkerCallPromisify } from '../types';
 /**
  * worker job type
  */
@@ -20,8 +17,6 @@ export interface WorkerJobWrapType {
     };
 }
 export interface WorkerUtils {
-    add: WorkerCallPromisify<Add>;
-    sub: WorkerCallPromisify<Sub>;
 }
 declare const run: WorkerUtils;
 export default run;

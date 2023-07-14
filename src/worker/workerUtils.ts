@@ -1,11 +1,6 @@
 import { StringKeyObjType } from '../types'
-import add from '../add'
-import sub from '../sub'
 
-const utils: StringKeyObjType = {
-  add,
-  sub,
-}
+const utils: StringKeyObjType = {}
 
 onmessage = e => {
   const { action, param, _sign } = e.data

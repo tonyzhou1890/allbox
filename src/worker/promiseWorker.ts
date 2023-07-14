@@ -1,7 +1,5 @@
 import Worker from 'web-worker:./workerUtils.ts'
-import type { Add } from '../add'
-import type { Sub } from '../sub'
-import type { WorkerCallPromisify } from '../types'
+import { WorkerCallPromisify } from '../types/index'
 
 /**
  * worker job type
@@ -71,9 +69,7 @@ function assignJob () {
 }
 
 export interface WorkerUtils {
-  // add: (...args: Parameters<Add>) => Promise<ReturnType<Add>>
-  add: WorkerCallPromisify<Add>
-  sub: WorkerCallPromisify<Sub>
+  [key: string]: WorkerCallPromisify<(...args: any) => any>
 }
 
 const run = new Proxy({} as WorkerUtils, {

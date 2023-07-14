@@ -1,34 +1,49 @@
 /**
- * example function: add
- */
-/**
- * add numbers
- * @param rest
- */
-declare function add(...rest: number[]): number;
-declare type Add = typeof add;
-
-/**
- * example function: sub
- */
-/**
  * sub numbers
- * @param rest
+ * @param {any[]} array
+ * @param {number} [startIndex] start index of the part that needs to process, default is 0
+ * @param {number} [endIndex] end index of the part that needs to process, not include self, default is the length of array
+ * @returns {any[]}
  */
-declare function sub(...rest: number[]): number;
-declare type Sub = typeof sub;
+declare function randomSwap<T>(array: T[], startIndex?: number, endIndex?: number): T[];
 
-declare type WorkerCallPromisify<T extends (...args: any) => any> = (...rest: Parameters<T>) => Promise<ReturnType<T>>;
+/**
+ * @param {any[]} array
+ * @param {number} aIndex
+ * @param {number} bIndex
+ * @returns {any[]}
+ */
+declare function swap<T>(array: T[], aIndex: number, bIndex: number): T[];
 
-interface WorkerUtils {
-    add: WorkerCallPromisify<Add>;
-    sub: WorkerCallPromisify<Sub>;
-}
+/**
+ * @param {any} value
+ * @returns {string}
+ * @desc get type name of value
+ * @example
+ * getTypeName(1) // 'Number'
+ * @example
+ * getTypeName(new Date()) // 'Date'
+ */
+declare function getTypeName(value: any): string;
 
-declare const utils: {
-    add: typeof add;
-    sub: typeof sub;
-    worker: WorkerUtils;
+/**
+ * @param {string} str
+ * @returns {string}
+ */
+declare function camelize(str: string): string;
+
+declare const Allbox: {
+    array: {
+        randomSwap: typeof randomSwap;
+        swap: typeof swap;
+    };
+    common: {
+        getTypeName: typeof getTypeName;
+    };
+    string: {
+        camelize: typeof camelize;
+        hyphenate: (str: string) => string;
+    };
 };
 
-export { utils as default };
+export { Allbox as default };

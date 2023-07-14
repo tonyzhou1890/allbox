@@ -10,7 +10,7 @@
   ],
   "scripts": {
     "dev": "rollup -w -c",
-    "build": "rollup -c",
+    "build": "ts-node ./build/prebuild.ts && rollup -c",
     "example": "anywhere -p 8445 -s &",
     "test": "jest",
     "doc": "typedoc",

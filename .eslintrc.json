@@ -23,8 +23,10 @@
         "varsIgnorePattern": "^_"
       }
     ],
+    "@typescript-eslint/no-explicit-any": "off",
+    "@typescript-eslint/no-non-null-assertion": "off",
     "no-unused-vars": "off",
-    "no-console": "warn",
+    "no-console": "off",
     "space-before-function-paren": "warn",
     "semi": "off",
     "quotes": [
