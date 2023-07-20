@@ -1,8 +1,10 @@
+import Text from './Text';
 import array_randomSwap from './array.random-swap';
 import array_swap from './array.swap';
 import common_getTypeName from './common.get-type-name';
 import string_camelize from './string.camelize';
 declare const Allbox: {
+    Text: typeof Text;
     array: {
         randomSwap: typeof array_randomSwap;
         swap: typeof array_swap;

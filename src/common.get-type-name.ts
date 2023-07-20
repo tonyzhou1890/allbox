@@ -1,6 +1,6 @@
 /**
  * @param {any} value
- * @returns {string}
+ * @returns string
  * @desc get type name of value
  * @example
  * getTypeName(1) // 'Number'

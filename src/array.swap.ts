@@ -2,7 +2,7 @@
  * @param {any[]} array
  * @param {number} aIndex
  * @param {number} bIndex
- * @returns {any[]}
+ * @returns any[]
  */
 function swap<T> (array: T[], aIndex: number, bIndex: number): T[] {
   const temp = array[aIndex]

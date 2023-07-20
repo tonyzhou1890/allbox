@@ -1,3 +1,6 @@
+declare class Text {
+}
+
 /**
  * sub numbers
  * @param {any[]} array
@@ -33,6 +36,7 @@ declare function getTypeName(value: any): string;
 declare function camelize(str: string): string;
 
 declare const Allbox: {
+    Text: typeof Text;
     array: {
         randomSwap: typeof randomSwap;
         swap: typeof swap;

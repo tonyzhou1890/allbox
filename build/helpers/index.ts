@@ -39,10 +39,11 @@ function genObjectFromFilenameStrArr(arr: Array<string>): StringKeyObjType {
     const path = item.split('.')
     let curObj = obj
     for (let i = 0; i < path.length - 1; i++) {
-      if (!curObj[path[i]]) {
-        curObj[path[i]] = {}
+      const key = camelize(path[i])
+      if (!curObj[key]) {
+        curObj[key] = {}
       }
-      curObj = curObj[path[i]]
+      curObj = curObj[key]
     }
     curObj[camelize(path[path.length - 1])] = [
       ...path.slice(0, -1),

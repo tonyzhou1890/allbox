@@ -18,7 +18,7 @@ function randomSwap(array, startIndex, endIndex) {
     if (getTypeName(endIndex) !== 'Number' || endIndex > array.length) {
         endIndex = array.length;
     }
-    for (let i = 0, len = (endIndex - startIndex); i < len; i++) {
+    for (let i = 0, len = endIndex - startIndex; i < len; i++) {
         const aIndex = (Math.random() * len + startIndex) >> 0;
         const bIndex = (Math.random() * len + startIndex) >> 0;
         swap(array, aIndex, bIndex);

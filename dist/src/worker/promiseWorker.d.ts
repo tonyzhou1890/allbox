@@ -1,3 +1,4 @@
+import { WorkerCallPromisify } from '../types/index';
 /**
  * worker job type
  */
@@ -17,6 +18,7 @@ export interface WorkerJobWrapType {
     };
 }
 export interface WorkerUtils {
+    [key: string]: WorkerCallPromisify<(...args: any) => any>;
 }
 declare const run: WorkerUtils;
 export default run;
