@@ -1,6 +1,6 @@
 {
   "name": "allbox",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "A collection of JavaScript utilities",
   "main": "./dist/index.cjs.js",
   "module": "./dist/index.esm.js",
