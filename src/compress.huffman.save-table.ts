@@ -1,5 +1,5 @@
 import { Trie } from './types/compress'
-import write from './bit-kit.little-endian.write'
+import put from './bit-kit.put'
 
 /**
  * 保存编码表
@@ -7,7 +7,7 @@ import write from './bit-kit.little-endian.write'
  * @param {typeof write} [wFn]
  * @returns Uint8Array
  **/
-function saveTable (trie: Trie, wFn: typeof write = write) {
+function saveTable (trie: Trie, wFn: typeof put = put) {
   // 前两个字节标识编码表字节长度
   const buf = new Uint8Array(514)
   let currBit = 16

@@ -1,21 +1,18 @@
 import getTypeName from './common.get-type-name'
-import lRead from './bit-kit.little-endian.read'
-import bRead from './bit-kit.big-endian.read'
+import get from './bit-kit.get'
 import buildTable from './compress.huffman.build-table'
 import buildTrieFromTable from './compress.huffman.build-trie-from-table'
-import reverse from './bit-kit.reverse'
 
 /**
  * decode
  * @param {Uint8Array} buf
- * @param {boolean} [isBigEndian]
  * @returns {Uint8Array}
  */
-function decode (buf: Uint8Array, isBigEndian: boolean = false): Uint8Array {
+function decode (buf: Uint8Array): Uint8Array {
   if (getTypeName(buf) !== 'Uint8Array') {
     throw new Error('Huffman.decode 的参数需要是 Uint8Array')
   }
-  const read = isBigEndian ? bRead : lRead
+  const read = get
   // 前两个字节是编码表字节长度
   const tableLength = (buf[0] << 8) + buf[1]
   // 构建哈夫曼树
@@ -54,7 +51,6 @@ function decode (buf: Uint8Array, isBigEndian: boolean = false): Uint8Array {
     while (currNum === undefined) {
       currBitLength++
       detectiveCode = read(compressedBuf, bitPos, currBitLength)
-      detectiveCode = reverse(detectiveCode, currBitLength)
       currNum = reservedTable[`${detectiveCode}_${currBitLength}`]
       if (currBitLength > 256) {
         throw new Error('解压错误')

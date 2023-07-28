@@ -30,9 +30,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">83.33% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>7/7</span>
+                <span class='fraction'>5/6</span>
             </div>
         
             
@@ -99,7 +99,8 @@
 <a name='L34'></a><a href='#L34'>34</a>
 <a name='L35'></a><a href='#L35'>35</a>
 <a name='L36'></a><a href='#L36'>36</a>
-<a name='L37'></a><a href='#L37'>37</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L37'></a><a href='#L37'>37</a>
+<a name='L38'></a><a href='#L38'>38</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -108,54 +109,55 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">5011579x</span>
-<span class="cline-any cline-yes">5011579x</span>
-<span class="cline-any cline-yes">5011579x</span>
-<span class="cline-any cline-yes">5011579x</span>
-<span class="cline-any cline-yes">5011579x</span>
-<span class="cline-any cline-yes">5011579x</span>
-<span class="cline-any cline-yes">5011579x</span>
-<span class="cline-any cline-yes">5011579x</span>
-<span class="cline-any cline-yes">5011579x</span>
-<span class="cline-any cline-yes">6614318x</span>
-<span class="cline-any cline-yes">6614318x</span>
-<span class="cline-any cline-yes">6614318x</span>
-<span class="cline-any cline-yes">6614318x</span>
-<span class="cline-any cline-yes">6614318x</span>
-<span class="cline-any cline-yes">6614318x</span>
-<span class="cline-any cline-yes">6614318x</span>
-<span class="cline-any cline-yes">6614318x</span>
-<span class="cline-any cline-yes">2229181x</span>
-<span class="cline-any cline-yes">2229181x</span>
-<span class="cline-any cline-yes">2229181x</span>
-<span class="cline-any cline-yes">6614318x</span>
-<span class="cline-any cline-yes">6614318x</span>
-<span class="cline-any cline-yes">6614318x</span>
-<span class="cline-any cline-yes">5011579x</span>
-<span class="cline-any cline-yes">5011579x</span>
-<span class="cline-any cline-yes">5011579x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span></td><td class="text"><pre class="prettyprint lang-js">import getBits from './bit-kit.get-bits'
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import getBits from './bit-kit.get-bits'
 &nbsp;
 /**
- * @param {Uint8Array} buf 
- * @param {number} bitOffset 
- * @param {number} [bitLength] 
+ * @param {Uint8Array} buf
+ * @param {number} bitOffset
+ * @param {number} [bitLength]
  * @returns {number} result number
  * @desc read number from Uint8Array with specific bit offset and bit length
  */
 function read (buf: Uint8Array, bitOffset: number, bitLength?: number): number {
-  bitLength = bitLength ?? 1
+  bitLength = bitLength<span class="branch-0 cbranch-no" title="branch not covered" > ?? 1</span>
   const rawBitLength = bitLength
   let byteIndex = (bitOffset / 8) &gt;&gt; 0
   // from right to left inside a byte
-  let bitIndex = (bitOffset % 8)
+  let bitIndex = bitOffset % 8
   let result = 0
 &nbsp;
   while (bitLength) {
     const readBits = 8 - bitIndex &gt; bitLength ? bitLength : 8 - bitIndex
-    result += (getBits(buf[byteIndex], bitIndex, readBits) &lt;&lt; (rawBitLength - bitLength))
-  
+    result += getBits(buf[byteIndex], bitIndex, readBits) &lt;&lt; (rawBitLength - bitLength)
+&nbsp;
     // shift bitIndex
     bitIndex += readBits
     bitOffset += readBits
@@ -171,14 +173,15 @@ function read (buf: Uint8Array, bitOffset: number, bitLength?: number): number {
   return result
 }
 &nbsp;
-export default read</pre></td></tr></table></pre>
+export default read
+&nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
             </div><!-- /wrapper -->
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-07-20T05:57:59.332Z
+                at 2023-07-28T03:41:07.831Z
             </div>
         <script src="prettify.js"></script>
         <script>

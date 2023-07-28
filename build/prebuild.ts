@@ -19,9 +19,12 @@ function genIndex() {
       const filename = path.basename(item, '.ts')
       // return `import ${filename.replace('.', '_')} from './${filename}'`
       const pathArr = filename.split('.')
-      return `import ${[...pathArr.slice(0, -1), helper.camelize(pathArr[pathArr.length - 1])].join(
-        '_'
-      )} from './${filename}'`
+      // return `import ${[...pathArr.slice(0, -1), helper.camelize(pathArr[pathArr.length - 1])].join(
+      //   '_'
+      // )} from './${filename}'`
+      return `import ${pathArr
+        .map((item: string) => helper.camelize(item))
+        .join('_')} from './${filename}'`
     })
     .join('\r\n')
   // concat exports text

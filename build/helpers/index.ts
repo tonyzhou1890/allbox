@@ -45,10 +45,7 @@ function genObjectFromFilenameStrArr(arr: Array<string>): StringKeyObjType {
       }
       curObj = curObj[key]
     }
-    curObj[camelize(path[path.length - 1])] = [
-      ...path.slice(0, -1),
-      camelize(path[path.length - 1]),
-    ].join('_')
+    curObj[camelize(path[path.length - 1])] = path.map((item: string) => camelize(item)).join('_')
   })
   return obj
 }

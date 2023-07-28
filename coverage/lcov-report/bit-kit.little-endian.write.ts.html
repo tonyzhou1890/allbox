@@ -100,7 +100,8 @@
 <a name='L35'></a><a href='#L35'>35</a>
 <a name='L36'></a><a href='#L36'>36</a>
 <a name='L37'></a><a href='#L37'>37</a>
-<a name='L38'></a><a href='#L38'>38</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L38'></a><a href='#L38'>38</a>
+<a name='L39'></a><a href='#L39'>39</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -111,38 +112,39 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">857163x</span>
-<span class="cline-any cline-yes">857163x</span>
-<span class="cline-any cline-yes">857163x</span>
-<span class="cline-any cline-yes">857163x</span>
-<span class="cline-any cline-yes">857163x</span>
-<span class="cline-any cline-yes">857163x</span>
-<span class="cline-any cline-yes">857163x</span>
-<span class="cline-any cline-yes">1376706x</span>
-<span class="cline-any cline-yes">1376706x</span>
-<span class="cline-any cline-yes">1376706x</span>
-<span class="cline-any cline-yes">1376706x</span>
-<span class="cline-any cline-yes">1376706x</span>
-<span class="cline-any cline-yes">1376706x</span>
-<span class="cline-any cline-yes">1376706x</span>
-<span class="cline-any cline-yes">1376706x</span>
-<span class="cline-any cline-yes">1376706x</span>
-<span class="cline-any cline-yes">1376706x</span>
-<span class="cline-any cline-yes">1376706x</span>
-<span class="cline-any cline-yes">626569x</span>
-<span class="cline-any cline-yes">626569x</span>
-<span class="cline-any cline-yes">626569x</span>
-<span class="cline-any cline-yes">1376706x</span>
-<span class="cline-any cline-yes">857163x</span>
-<span class="cline-any cline-yes">857163x</span>
-<span class="cline-any cline-yes">857163x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span></td><td class="text"><pre class="prettyprint lang-js">import setBits from './bit-kit.set-bits'
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import setBits from './bit-kit.set-bits'
 import getBitLengthOfNumber from './bit-kit.get-bit-length-of-number'
 &nbsp;
 /**
- * @param {Uint8Array} buf 
- * @param {number} bitOffset 
+ * @param {Uint8Array} buf
+ * @param {number} bitOffset
  * @param {number} num
  * @param {number} [bitLength] the bit length of num, fn will get actual bit length of num if bitLength is not provided.
  * @returns {number} the new bit offset
@@ -152,7 +154,7 @@ function write (buf: Uint8Array, bitOffset: number, num: number, bitLength?: num
   bitLength = bitLength ?? getBitLengthOfNumber(num)
   let byteIndex = (bitOffset / 8) &gt;&gt; 0
   // from right to left inside a byte
-  let bitIndex = (bitOffset % 8)
+  let bitIndex = bitOffset % 8
 &nbsp;
   while (bitLength) {
     const writeBits = 8 - bitIndex &gt; bitLength ? bitLength : 8 - bitIndex
@@ -160,7 +162,7 @@ function write (buf: Uint8Array, bitOffset: number, num: number, bitLength?: num
     buf[byteIndex] = setBits(buf[byteIndex], bitIndex, writeBits, num)
     num &gt;&gt;= writeBits
     bitLength -= writeBits
-  
+&nbsp;
     // shift bitIndex
     bitIndex += writeBits
     bitOffset += writeBits
@@ -174,14 +176,15 @@ function write (buf: Uint8Array, bitOffset: number, num: number, bitLength?: num
   return bitOffset
 }
 &nbsp;
-export default write</pre></td></tr></table></pre>
+export default write
+&nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
             </div><!-- /wrapper -->
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-07-20T05:57:59.332Z
+                at 2023-07-28T03:41:07.831Z
             </div>
         <script src="prettify.js"></script>
         <script>

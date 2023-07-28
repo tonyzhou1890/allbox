@@ -1,7 +1,7 @@
 const camelizeRE = /-(\w)/g;
 /**
  * @param {string} str
- * @returns {string}
+ * @returns string
  */
 function camelize(str) {
     return str.replace(camelizeRE, (_, c) => (c ? c.toUpperCase() : ''));

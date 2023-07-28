@@ -1,7 +1,7 @@
 const hyphenateRE = /\B([A-Z])/g;
 /**
  * @param {string} str
- * @returns {string}
+ * @returns string
  */
 const hyphenate = (str) => {
     return str.replace(hyphenateRE, '-$1').toLowerCase();

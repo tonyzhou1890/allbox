@@ -1,6 +1,6 @@
 /**
  * @param {string} str
- * @returns {string}
+ * @returns string
  */
 declare function camelize(str: string): string;
 export default camelize;

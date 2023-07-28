@@ -2,21 +2,18 @@ import getTypeName from './common.get-type-name'
 import buildTable from './compress.huffman.build-table'
 import saveTable from './compress.huffman.save-table'
 import buildTrie from './compress.huffman.build-trie'
-import lWrite from './bit-kit.little-endian.write'
-import bWrite from './bit-kit.big-endian.write'
-import reverse from './bit-kit.reverse'
+import put from './bit-kit.put'
 
 /**
  * 压缩
  * @param {Uint8Array} buf
- * @param {boolean} [isBigEndian]
  * @return {Uint8Array}
  **/
-function encode (buf: Uint8Array, isBigEndian: boolean = false): Uint8Array {
+function encode (buf: Uint8Array): Uint8Array {
   if (getTypeName(buf) !== 'Uint8Array') {
     throw new Error('Huffman.encode 的参数需要是 Uint8Array')
   }
-  const write = isBigEndian ? bWrite : lWrite
+  const write = put
   // 频率统计。
   // 统计一个字节共 256 种数值分别出现的次数
   let arr = new Array(256).fill(0)
@@ -48,7 +45,7 @@ function encode (buf: Uint8Array, isBigEndian: boolean = false): Uint8Array {
       newBuf.set(encodeBuf)
       encodeBuf = newBuf
     }
-    currBit = write(encodeBuf, currBit, reverse(table[buf[i]].code, bitLength), bitLength)
+    currBit = write(encodeBuf, currBit, table[buf[i]].code, bitLength)
   }
   // encodeBuf 裁切
   encodeBuf = encodeBuf.slice(0, Math.ceil(currBit / 8))

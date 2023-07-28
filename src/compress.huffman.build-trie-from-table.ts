@@ -1,5 +1,5 @@
 import { Trie } from './types/compress'
-import read from './bit-kit.little-endian.read'
+import get from './bit-kit.get'
 
 /**
  * 根据编码表二进制逆向构建哈夫曼树
@@ -8,7 +8,7 @@ import read from './bit-kit.little-endian.read'
  * @param {typeof read} [rFn]
  * @returns {Trie}
  **/
-function buildTrieFromTable (buf: Uint8Array, startBit: number = 0, rFn: typeof read = read): Trie {
+function buildTrieFromTable (buf: Uint8Array, startBit: number = 0, rFn: typeof get = get): Trie {
   return build(buf)
 
   function build (buf: Uint8Array): Trie {
