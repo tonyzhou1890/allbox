@@ -17,8 +17,8 @@ export interface WorkerJobWrapType {
         reject: (value: unknown) => void;
     };
 }
-declare function worker(w: string | (() => Worker)): WorkerUtils;
+declare function create(w: string | (() => Worker)): WorkerUtils;
 export interface WorkerUtils {
     [key: string]: WorkerCallPromisify<(...args: any) => any>;
 }
-export default worker;
+export default create;

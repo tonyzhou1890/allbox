@@ -1,6 +1,6 @@
 import getTypeName from './common.get-type-name.js';
 
-function worker(w) {
+function create(w) {
     const type = getTypeName(w);
     if (type !== 'String' && type !== 'Function') {
         throw new Error('worker 参数类型错误');
@@ -68,4 +68,4 @@ function worker(w) {
     return fns;
 }
 
-export { worker as default };
+export { create as default };

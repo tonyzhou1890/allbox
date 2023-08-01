@@ -1,15 +1,16 @@
-import { WorkerCallPromisify } from '../types/index';
+import { WorkerCallPromisify } from './types/index.js';
+
 /**
  * worker job type
  */
-export interface WorkerJobType {
+interface WorkerJobType {
     action: string;
     param?: Array<any>;
 }
 /**
  * worker job wrap type
  */
-export interface WorkerJobWrapType {
+interface WorkerJobWrapType {
     _sign: number;
     job: WorkerJobType;
     p: {
@@ -17,8 +18,9 @@ export interface WorkerJobWrapType {
         reject: (value: unknown) => void;
     };
 }
-export interface WorkerUtils {
+declare function create(w: string | (() => Worker)): WorkerUtils;
+interface WorkerUtils {
     [key: string]: WorkerCallPromisify<(...args: any) => any>;
 }
-declare const run: WorkerUtils;
-export default run;
+
+export { WorkerJobType, WorkerJobWrapType, WorkerUtils, create as default };

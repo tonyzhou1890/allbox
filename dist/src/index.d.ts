@@ -22,7 +22,8 @@ import graphic_randomScatter from './graphic.random-scatter';
 import graphic_vector2Mapping from './graphic.vector2-mapping';
 import number_randomRange from './number.random-range';
 import string_camelize from './string.camelize';
-import worker from './worker';
+import worker_create from './worker.create';
+import worker_thread from './worker.thread';
 declare const Allbox: {
     array: {
         randomSwap: typeof array_randomSwap;
@@ -69,6 +70,9 @@ declare const Allbox: {
         camelize: typeof string_camelize;
         hyphenate: (str: string) => string;
     };
-    worker: typeof worker;
+    worker: {
+        create: typeof worker_create;
+        thread: typeof worker_thread;
+    };
 };
 export default Allbox;

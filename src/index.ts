@@ -24,7 +24,8 @@ import graphic_vector2Mapping from './graphic.vector2-mapping'
 import number_randomRange from './number.random-range'
 import string_camelize from './string.camelize'
 import string_hyphenate from './string.hyphenate'
-import worker from './worker'
+import worker_create from './worker.create'
+import worker_thread from './worker.thread'
 
 const Allbox = {
   array: {
@@ -72,7 +73,10 @@ const Allbox = {
     camelize: string_camelize,
     hyphenate: string_hyphenate,
   },
-  worker: worker,
+  worker: {
+    create: worker_create,
+    thread: worker_thread,
+  },
 }
 
 export default Allbox

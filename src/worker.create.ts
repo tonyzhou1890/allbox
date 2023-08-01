@@ -21,7 +21,7 @@ export interface WorkerJobWrapType {
   }
 }
 
-function worker (w: string | (() => Worker)): WorkerUtils {
+function create (w: string | (() => Worker)): WorkerUtils {
   const type = getTypeName(w)
   if (type !== 'String' && type !== 'Function') {
     throw new Error('worker 参数类型错误')
@@ -101,4 +101,4 @@ export interface WorkerUtils {
   [key: string]: WorkerCallPromisify<(...args: any) => any>
 }
 
-export default worker
+export default create

@@ -14,7 +14,10 @@ function randomScatter(bound, count) {
     for (let i = 0; i < count; i++) {
         list.push(randomVector2(0, 1));
     }
-    vector2Mapping(list, [[0, 0], [1, 1]], bound);
+    vector2Mapping(list, [
+        [0, 0],
+        [1, 1],
+    ], bound);
     return list;
 }
 
