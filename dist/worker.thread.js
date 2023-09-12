@@ -6,7 +6,7 @@ function thread(utils) {
             const res = {
                 action,
                 result: utils[action](...param),
-                _sign
+                _sign,
             };
             postMessage(res);
         }

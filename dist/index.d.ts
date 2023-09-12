@@ -22,6 +22,7 @@ import randomScatter from './graphic.random-scatter.js';
 import vector2Mapping from './graphic.vector2-mapping.js';
 import randomRange from './number.random-range.js';
 import camelize from './string.camelize.js';
+import flat from './tree.flat.js';
 import create from './worker.create.js';
 import thread from './worker.thread.js';
 import './types/array.js';
@@ -73,6 +74,9 @@ declare const Allbox: {
     string: {
         camelize: typeof camelize;
         hyphenate: (str: string) => string;
+    };
+    tree: {
+        flat: typeof flat;
     };
     worker: {
         create: typeof create;

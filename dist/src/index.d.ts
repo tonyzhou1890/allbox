@@ -22,6 +22,7 @@ import graphic_randomScatter from './graphic.random-scatter';
 import graphic_vector2Mapping from './graphic.vector2-mapping';
 import number_randomRange from './number.random-range';
 import string_camelize from './string.camelize';
+import tree_flat from './tree.flat';
 import worker_create from './worker.create';
 import worker_thread from './worker.thread';
 declare const Allbox: {
@@ -69,6 +70,9 @@ declare const Allbox: {
     string: {
         camelize: typeof string_camelize;
         hyphenate: (str: string) => string;
+    };
+    tree: {
+        flat: typeof tree_flat;
     };
     worker: {
         create: typeof worker_create;

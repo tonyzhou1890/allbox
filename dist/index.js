@@ -23,6 +23,7 @@ import vector2Mapping from './graphic.vector2-mapping.js';
 import randomRange from './number.random-range.js';
 import camelize from './string.camelize.js';
 import { hyphenate } from './string.hyphenate.js';
+import flat from './tree.flat.js';
 import create from './worker.create.js';
 import thread from './worker.thread.js';
 
@@ -72,6 +73,9 @@ const Allbox = {
     string: {
         camelize: camelize,
         hyphenate: hyphenate,
+    },
+    tree: {
+        flat: flat,
     },
     worker: {
         create: create,
