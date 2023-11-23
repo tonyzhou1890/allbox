@@ -1,3 +1,4 @@
+import array_isUnique from './array.is-unique';
 import array_randomSwap from './array.random-swap';
 import array_randomVector2 from './array.random-vector2';
 import array_swap from './array.swap';
@@ -20,6 +21,7 @@ import compress_huffman_encode from './compress.huffman.encode';
 import compress_huffman_saveTable from './compress.huffman.save-table';
 import graphic_randomScatter from './graphic.random-scatter';
 import graphic_vector2Mapping from './graphic.vector2-mapping';
+import number_baseConvert from './number.base-convert';
 import number_randomRange from './number.random-range';
 import string_camelize from './string.camelize';
 import tree_flat from './tree.flat';
@@ -27,6 +29,7 @@ import worker_create from './worker.create';
 import worker_thread from './worker.thread';
 declare const Allbox: {
     array: {
+        isUnique: typeof array_isUnique;
         randomSwap: typeof array_randomSwap;
         randomVector2: typeof array_randomVector2;
         swap: typeof array_swap;
@@ -65,6 +68,7 @@ declare const Allbox: {
         vector2Mapping: typeof graphic_vector2Mapping;
     };
     number: {
+        baseConvert: typeof number_baseConvert;
         randomRange: typeof number_randomRange;
     };
     string: {

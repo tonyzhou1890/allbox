@@ -1,3 +1,4 @@
+import isUnique from './array.is-unique.js';
 import randomSwap from './array.random-swap.js';
 import randomVector2 from './array.random-vector2.js';
 import swap from './array.swap.js';
@@ -20,6 +21,7 @@ import encode from './compress.huffman.encode.js';
 import saveTable from './compress.huffman.save-table.js';
 import randomScatter from './graphic.random-scatter.js';
 import vector2Mapping from './graphic.vector2-mapping.js';
+import baseConvert from './number.base-convert.js';
 import randomRange from './number.random-range.js';
 import camelize from './string.camelize.js';
 import flat from './tree.flat.js';
@@ -31,6 +33,7 @@ import './types/index.js';
 
 declare const Allbox: {
     array: {
+        isUnique: typeof isUnique;
         randomSwap: typeof randomSwap;
         randomVector2: typeof randomVector2;
         swap: typeof swap;
@@ -69,6 +72,7 @@ declare const Allbox: {
         vector2Mapping: typeof vector2Mapping;
     };
     number: {
+        baseConvert: typeof baseConvert;
         randomRange: typeof randomRange;
     };
     string: {

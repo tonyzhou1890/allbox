@@ -10,7 +10,7 @@ import getBitLengthOfNumber from './bit-kit.get-bit-length-of-number.js';
  * @desc write number into Uint8Array on bit offset
  */
 function write(buf, bitOffset, num, bitLength) {
-    bitLength = bitLength !== null && bitLength !== void 0 ? bitLength : getBitLengthOfNumber(num);
+    bitLength = bitLength ?? getBitLengthOfNumber(num);
     let byteIndex = (bitOffset / 8) >> 0;
     // from right to left inside a byte
     let bitIndex = bitOffset % 8;

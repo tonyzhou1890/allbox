@@ -42,7 +42,10 @@ function create(w) {
                 idleWorker.idle = false;
                 waitingJob = waiting.shift();
                 quene.set(waitingJob._sign, waitingJob.p);
-                idleWorker.worker.postMessage(Object.assign(Object.assign({}, waitingJob.job), { _sign: waitingJob._sign }));
+                idleWorker.worker.postMessage({
+                    ...waitingJob.job,
+                    _sign: waitingJob._sign,
+                });
             }
         }
     }

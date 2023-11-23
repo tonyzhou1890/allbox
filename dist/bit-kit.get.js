@@ -7,7 +7,7 @@
  * @desc read data in Uint8Array. bit index from left to right in byte.
  **/
 function get(buf, bitOffset, bitLength) {
-    bitLength = bitLength !== null && bitLength !== void 0 ? bitLength : 1;
+    bitLength = bitLength ?? 1;
     let startByte = (bitOffset / 8) >> 0;
     let leftBits = bitLength;
     let startBit = bitOffset % 8;

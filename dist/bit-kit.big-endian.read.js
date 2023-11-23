@@ -8,7 +8,7 @@ import getBits from './bit-kit.get-bits.js';
  * @desc read number from Uint8Array with specific bit offset and bit length
  */
 function read(buf, bitOffset, bitLength) {
-    bitLength = bitLength !== null && bitLength !== void 0 ? bitLength : 1;
+    bitLength = bitLength ?? 1;
     let byteIndex = (bitOffset / 8) >> 0;
     // from right to left inside a byte
     let bitIndex = bitOffset % 8;

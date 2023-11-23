@@ -10,7 +10,7 @@ import getBitLengthOfNumber from './bit-kit.get-bit-length-of-number.js';
  * @desc write number into Uint8Array on bit offset. bit index from left to right inside a byte
  **/
 function put(buf, bitOffset, num, bitLength) {
-    bitLength = bitLength !== null && bitLength !== void 0 ? bitLength : getBitLengthOfNumber(num);
+    bitLength = bitLength ?? getBitLengthOfNumber(num);
     const length = bitLength;
     let startByte = (bitOffset / 8) >> 0;
     let startBit = bitOffset % 8;
