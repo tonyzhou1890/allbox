@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for array.random-swap.ts</title>
+    <title>Code coverage report for common.temperature-convert.ts</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="prettify.css" />
     <link rel="stylesheet" href="base.css" />
@@ -19,20 +19,20 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="index.html">All files</a> array.random-swap.ts</h1>
+        <h1><a href="index.html">All files</a> common.temperature-convert.ts</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>30/30</span>
+                <span class='fraction'>39/39</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>12/12</span>
+                <span class='fraction'>7/7</span>
             </div>
         
             
@@ -46,7 +46,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>30/30</span>
+                <span class='fraction'>39/39</span>
             </div>
         
             
@@ -93,66 +93,93 @@
 <a name='L28'></a><a href='#L28'>28</a>
 <a name='L29'></a><a href='#L29'>29</a>
 <a name='L30'></a><a href='#L30'>30</a>
-<a name='L31'></a><a href='#L31'>31</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L31'></a><a href='#L31'>31</a>
+<a name='L32'></a><a href='#L32'>32</a>
+<a name='L33'></a><a href='#L33'>33</a>
+<a name='L34'></a><a href='#L34'>34</a>
+<a name='L35'></a><a href='#L35'>35</a>
+<a name='L36'></a><a href='#L36'>36</a>
+<a name='L37'></a><a href='#L37'>37</a>
+<a name='L38'></a><a href='#L38'>38</a>
+<a name='L39'></a><a href='#L39'>39</a>
+<a name='L40'></a><a href='#L40'>40</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">14x</span>
+<span class="cline-any cline-yes">14x</span>
+<span class="cline-any cline-yes">14x</span>
+<span class="cline-any cline-yes">14x</span>
+<span class="cline-any cline-yes">14x</span>
+<span class="cline-any cline-yes">14x</span>
+<span class="cline-any cline-yes">14x</span>
+<span class="cline-any cline-yes">14x</span>
+<span class="cline-any cline-yes">14x</span>
+<span class="cline-any cline-yes">14x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">14x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">14x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-yes">18x</span>
-<span class="cline-any cline-yes">18x</span>
-<span class="cline-any cline-yes">18x</span>
-<span class="cline-any cline-yes">18x</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">14x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">14x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">14x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">14x</span>
+<span class="cline-any cline-yes">14x</span>
+<span class="cline-any cline-yes">14x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import swap from './array.swap'
-import getTypeName from './common.get-type-name'
-&nbsp;
-/**
- * sub numbers
- * @param {any[]} array
- * @param {number} [startIndex] start index of the part that needs to process, default is 0
- * @param {number} [endIndex] end index of the part that needs to process, not include self, default is the length of array
- * @returns any[]
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">/**
+ * @name temperatueConvert
+ * @param {number} value
+ * @param {string} sourceType temperature type. C(elsius)、F(ahrenheit)、K(elvin)
+ * @param {string} targetType like sourceType
+ * @param {number} [precise] precision, default: 5
  */
-function randomSwap&lt;T&gt; (array: T[], startIndex?: number, endIndex?: number): T[] {
-  if (getTypeName(array) !== 'Array' || array.length &lt; 2) {
-    return array
+function temperatueConvert (
+  value: number,
+  sourceType: 'C' | 'F' | 'K',
+  targetType: 'C' | 'F' | 'K',
+  precise = 5
+): number {
+  let target = value
+  const convertPair = sourceType + targetType
+  switch (convertPair) {
+    case 'CF':
+      target = value * 1.8 + 32
+      break
+    case 'CK':
+      target = value + 273.15
+      break
+    case 'FC':
+      target = (value - 32) / 1.8
+      break
+    case 'FK':
+      target = (value + 459.67) * 5 / 9
+      break
+    case 'KC':
+      target = value - 273.15
+      break
+    case 'KF':
+      target = value * 1.8 - 459.67
+      break
   }
-  if (getTypeName(startIndex) !== 'Number' || startIndex! &lt; 0) {
-    startIndex = 0
-  }
-  if (getTypeName(endIndex) !== 'Number' || endIndex! &gt; array.length) {
-    endIndex = array.length
-  }
-&nbsp;
-  for (let i = 0, len = endIndex! - startIndex!; i &lt; len; i++) {
-    const aIndex = (Math.random() * len + startIndex!) &gt;&gt; 0
-    const bIndex = (Math.random() * len + startIndex!) &gt;&gt; 0
-    swap(array, aIndex, bIndex)
-  }
-  return array
+  return Number(target.toFixed(precise))
 }
 &nbsp;
-export default randomSwap
+export default temperatueConvert
 &nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->

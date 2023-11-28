@@ -45,7 +45,7 @@ function baseConvert (
   }
   // integer
   const sourceIntArr = sourceArr[0]
-  const targetIntArr = []
+  const targetIntArr: string[] = []
   const sourceBase = BigInt(sourceTable.length)
   const targetBase = BigInt(targetTable.length)
   let sourceInt = 0n
@@ -74,7 +74,7 @@ function baseConvert (
    */
   if (sourceArr[1]) {
     const sourceDecArr = sourceArr[1]
-    const targetDecArr = []
+    const targetDecArr: string[] = []
     // use array to represent decimal value, [numerator, denominator]
     const decArr = [0n, 1n]
     for (let i = 0; i < sourceDecArr.length; i++) {
