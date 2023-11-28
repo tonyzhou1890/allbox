@@ -12,7 +12,10 @@ import bitKit_littleEndian_write from './bit-kit.little-endian.write';
 import bitKit_put from './bit-kit.put';
 import bitKit_reverse from './bit-kit.reverse';
 import bitKit_setBits from './bit-kit.set-bits';
+import common_angleConvert from './common.angle-convert';
+import common_bmi from './common.bmi';
 import common_getTypeName from './common.get-type-name';
+import common_temperatureConvert from './common.temperature-convert';
 import compress_huffman_buildTable from './compress.huffman.build-table';
 import compress_huffman_buildTrieFromTable from './compress.huffman.build-trie-from-table';
 import compress_huffman_buildTrie from './compress.huffman.build-trie';
@@ -22,9 +25,11 @@ import compress_huffman_saveTable from './compress.huffman.save-table';
 import graphic_randomScatter from './graphic.random-scatter';
 import graphic_vector2Mapping from './graphic.vector2-mapping';
 import number_baseConvert from './number.base-convert';
+import number_format_thousandsSep from './number.format.thousands-sep';
 import number_randomRange from './number.random-range';
 import string_camelize from './string.camelize';
 import tree_flat from './tree.flat';
+import validate_isEmpty from './validate.is-empty';
 import worker_create from './worker.create';
 import worker_thread from './worker.thread';
 declare const Allbox: {
@@ -51,7 +56,10 @@ declare const Allbox: {
         setBits: typeof bitKit_setBits;
     };
     common: {
+        angleConvert: typeof common_angleConvert;
+        bmi: typeof common_bmi;
         getTypeName: typeof common_getTypeName;
+        temperatureConvert: typeof common_temperatureConvert;
     };
     compress: {
         huffman: {
@@ -69,6 +77,9 @@ declare const Allbox: {
     };
     number: {
         baseConvert: typeof number_baseConvert;
+        format: {
+            thousandsSep: typeof number_format_thousandsSep;
+        };
         randomRange: typeof number_randomRange;
     };
     string: {
@@ -77,6 +88,9 @@ declare const Allbox: {
     };
     tree: {
         flat: typeof tree_flat;
+    };
+    validate: {
+        isEmpty: typeof validate_isEmpty;
     };
     worker: {
         create: typeof worker_create;

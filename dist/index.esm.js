@@ -331,6 +331,66 @@ function reverse(num, bitLength) {
 }
 
 /**
+ * @name angleConvert
+ * @param {number} value
+ * @param {string} sourceType angle type. D(egree)、R(adian)
+ * @param {string} targetType like sourceType
+ */
+function angleConvert(value, sourceType, targetType) {
+    let target = value;
+    const convertPair = sourceType + targetType;
+    switch (convertPair) {
+        case 'DR':
+            target = (value / 180) * Math.PI;
+            break;
+        case 'RD':
+            target = (value / Math.PI) * 180;
+            break;
+    }
+    return target;
+}
+
+/**
+ * @param height unit: cm
+ * @param weight unit: kg
+ */
+function bmi(height, weight) {
+    return weight / ((height * height) / 10000);
+}
+
+/**
+ * @name temperatueConvert
+ * @param {number} value
+ * @param {string} sourceType temperature type. C(elsius)、F(ahrenheit)、K(elvin)
+ * @param {string} targetType like sourceType
+ */
+function temperatueConvert(value, sourceType, targetType) {
+    let target = value;
+    const convertPair = sourceType + targetType;
+    switch (convertPair) {
+        case 'CF':
+            target = value * 1.8 + 32;
+            break;
+        case 'CK':
+            target = value + 273.15;
+            break;
+        case 'FC':
+            target = (value - 32) / 1.8;
+            break;
+        case 'FK':
+            target = ((value + 459.67) * 5) / 9;
+            break;
+        case 'KC':
+            target = value - 273.15;
+            break;
+        case 'KF':
+            target = value * 1.8 - 459.67;
+            break;
+    }
+    return target;
+}
+
+/**
  * 生成编码表
  * @param {Trie} trie
  * @returns {CodeNode[]}
@@ -707,6 +767,22 @@ function baseConvert(source, sourceTable, targetTable, precise = 32) {
     return target;
 }
 
+/**
+ * @param {number} num
+ * @returns
+ */
+function thousandsSep(num) {
+    const arr = num.toString().split('.');
+    return [
+        arr[0].replace(/(\d)(?=(\d{3})+(?!\d))/g, function ($0, $1) {
+            return $1 + ',';
+        }),
+        arr[1],
+    ]
+        .filter(v => v)
+        .join('.');
+}
+
 const camelizeRE = /-(\w)/g;
 /**
  * @param {string} str
@@ -765,6 +841,14 @@ function flat(array, deep = false, children = 'children') {
             }
         }
     }
+}
+
+/**
+ * @param {any} val
+ * @returns
+ */
+function isEmpty(val) {
+    return val === undefined || val === null || val === '';
 }
 
 function create(w) {
@@ -881,7 +965,10 @@ const Allbox = {
         setBits: setBits,
     },
     common: {
+        angleConvert: angleConvert,
+        bmi: bmi,
         getTypeName: getTypeName,
+        temperatureConvert: temperatueConvert,
     },
     compress: {
         huffman: {
@@ -899,6 +986,9 @@ const Allbox = {
     },
     number: {
         baseConvert: baseConvert,
+        format: {
+            thousandsSep: thousandsSep,
+        },
         randomRange: randomRange,
     },
     string: {
@@ -907,6 +997,9 @@ const Allbox = {
     },
     tree: {
         flat: flat,
+    },
+    validate: {
+        isEmpty: isEmpty,
     },
     worker: {
         create: create,
