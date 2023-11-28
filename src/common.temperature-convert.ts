@@ -3,13 +3,11 @@
  * @param {number} value
  * @param {string} sourceType temperature type. C(elsius)、F(ahrenheit)、K(elvin)
  * @param {string} targetType like sourceType
- * @param {number} [precise] precision, default: 5
  */
 function temperatueConvert (
   value: number,
   sourceType: 'C' | 'F' | 'K',
-  targetType: 'C' | 'F' | 'K',
-  precise = 5
+  targetType: 'C' | 'F' | 'K'
 ): number {
   let target = value
   const convertPair = sourceType + targetType
@@ -33,7 +31,7 @@ function temperatueConvert (
       target = value * 1.8 - 459.67
       break
   }
-  return Number(target.toFixed(precise))
+  return target
 }
 
 export default temperatueConvert

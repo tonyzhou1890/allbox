@@ -10,16 +10,16 @@ describe('function common.temperature-convert: ', () => {
     expect(tempConvert(20, 'C', 'K')).toBe(293.15)
   })
   test('common temperature convert: F -> C', () => {
-    expect(tempConvert(0, 'F', 'C')).toBe(-17.77778)
-    expect(tempConvert(20, 'F', 'C')).toBe(-6.66667)
+    expect(tempConvert(0, 'F', 'C').toFixed(5)).toBe('-17.77778')
+    expect(tempConvert(20, 'F', 'C')).toBe(-6.666666666666666)
   })
   test('common temperature convert: F -> K', () => {
-    expect(tempConvert(0, 'F', 'K')).toBe(255.37222)
-    expect(tempConvert(20, 'F', 'K')).toBe(266.48333)
+    expect(tempConvert(0, 'F', 'K').toFixed(5)).toBe('255.37222')
+    expect(tempConvert(20, 'F', 'K')).toBe(266.48333333333335)
   })
   test('common temperature convert: K -> C', () => {
     expect(tempConvert(0, 'K', 'C')).toBe(-273.15)
-    expect(tempConvert(20, 'K', 'C')).toBe(-253.15)
+    expect(tempConvert(20, 'K', 'C').toFixed(5)).toBe('-253.15000')
   })
   test('common temperature convert: K -> F', () => {
     expect(tempConvert(0, 'K', 'F')).toBe(-459.67)
