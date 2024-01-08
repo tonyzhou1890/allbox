@@ -1,5 +1,5 @@
 import swap from './array.swap.js';
-import getTypeName from './common.get-type-name.js';
+import getTypeName from './other.get-type-name.js';
 
 /**
  * sub numbers

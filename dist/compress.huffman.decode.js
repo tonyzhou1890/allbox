@@ -1,4 +1,4 @@
-import getTypeName from './common.get-type-name.js';
+import getTypeName from './other.get-type-name.js';
 import get from './bit-kit.get.js';
 import buildTable from './compress.huffman.build-table.js';
 import buildTrieFromTable from './compress.huffman.build-trie-from-table.js';

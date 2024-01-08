@@ -12,10 +12,6 @@ import write$1 from './bit-kit.little-endian.write.js';
 import put from './bit-kit.put.js';
 import reverse from './bit-kit.reverse.js';
 import setBits from './bit-kit.set-bits.js';
-import angleConvert from './common.angle-convert.js';
-import bmi from './common.bmi.js';
-import getTypeName from './common.get-type-name.js';
-import temperatueConvert from './common.temperature-convert.js';
 import buildTable from './compress.huffman.build-table.js';
 import buildTrieFromTable from './compress.huffman.build-trie-from-table.js';
 import buildTrie from './compress.huffman.build-trie.js';
@@ -24,9 +20,15 @@ import encode from './compress.huffman.encode.js';
 import saveTable from './compress.huffman.save-table.js';
 import randomScatter from './graphic.random-scatter.js';
 import vector2Mapping from './graphic.vector2-mapping.js';
+import pi from './math.pi.js';
 import baseConvert from './number.base-convert.js';
 import thousandsSep from './number.format.thousands-sep.js';
 import randomRange from './number.random-range.js';
+import angleConvert from './other.angle-convert.js';
+import bmi from './other.bmi.js';
+import getTypeName from './other.get-type-name.js';
+import searchPatternCheck from './other.search-pattern-check.js';
+import temperatueConvert from './other.temperature-convert.js';
 import camelize from './string.camelize.js';
 import { hyphenate } from './string.hyphenate.js';
 import flat from './tree.flat.js';
@@ -58,12 +60,6 @@ const Allbox = {
         reverse: reverse,
         setBits: setBits,
     },
-    common: {
-        angleConvert: angleConvert,
-        bmi: bmi,
-        getTypeName: getTypeName,
-        temperatureConvert: temperatueConvert,
-    },
     compress: {
         huffman: {
             buildTable: buildTable,
@@ -78,12 +74,22 @@ const Allbox = {
         randomScatter: randomScatter,
         vector2Mapping: vector2Mapping,
     },
+    math: {
+        pi: pi,
+    },
     number: {
         baseConvert: baseConvert,
         format: {
             thousandsSep: thousandsSep,
         },
         randomRange: randomRange,
+    },
+    other: {
+        angleConvert: angleConvert,
+        bmi: bmi,
+        getTypeName: getTypeName,
+        searchPatternCheck: searchPatternCheck,
+        temperatureConvert: temperatueConvert,
     },
     string: {
         camelize: camelize,

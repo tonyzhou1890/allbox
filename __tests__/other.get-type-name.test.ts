@@ -1,4 +1,4 @@
-import getTypeName from '../src/common.get-type-name'
+import getTypeName from '../src/other.get-type-name'
 
 describe('function common.get-type-name: ', () => {
   test('base type Number', () => {

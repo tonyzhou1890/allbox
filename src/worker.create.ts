@@ -1,5 +1,5 @@
 import { WorkerCallPromisify } from './types/index'
-import getTypeName from './common.get-type-name'
+import getTypeName from './other.get-type-name'
 
 /**
  * worker job type

@@ -12,10 +12,6 @@ import write$1 from './bit-kit.little-endian.write.js';
 import put from './bit-kit.put.js';
 import reverse from './bit-kit.reverse.js';
 import setBits from './bit-kit.set-bits.js';
-import angleConvert from './common.angle-convert.js';
-import bmi from './common.bmi.js';
-import getTypeName from './common.get-type-name.js';
-import temperatueConvert from './common.temperature-convert.js';
 import buildTable from './compress.huffman.build-table.js';
 import buildTrieFromTable from './compress.huffman.build-trie-from-table.js';
 import buildTrie from './compress.huffman.build-trie.js';
@@ -24,9 +20,15 @@ import encode from './compress.huffman.encode.js';
 import saveTable from './compress.huffman.save-table.js';
 import randomScatter from './graphic.random-scatter.js';
 import vector2Mapping from './graphic.vector2-mapping.js';
+import pi from './math.pi.js';
 import baseConvert from './number.base-convert.js';
 import thousandsSep from './number.format.thousands-sep.js';
 import randomRange from './number.random-range.js';
+import angleConvert from './other.angle-convert.js';
+import bmi from './other.bmi.js';
+import getTypeName from './other.get-type-name.js';
+import searchPatternCheck from './other.search-pattern-check.js';
+import temperatueConvert from './other.temperature-convert.js';
 import camelize from './string.camelize.js';
 import flat from './tree.flat.js';
 import isEmpty from './validate.is-empty.js';
@@ -59,12 +61,6 @@ declare const Allbox: {
         reverse: typeof reverse;
         setBits: typeof setBits;
     };
-    common: {
-        angleConvert: typeof angleConvert;
-        bmi: typeof bmi;
-        getTypeName: typeof getTypeName;
-        temperatureConvert: typeof temperatueConvert;
-    };
     compress: {
         huffman: {
             buildTable: typeof buildTable;
@@ -79,12 +75,22 @@ declare const Allbox: {
         randomScatter: typeof randomScatter;
         vector2Mapping: typeof vector2Mapping;
     };
+    math: {
+        pi: typeof pi;
+    };
     number: {
         baseConvert: typeof baseConvert;
         format: {
             thousandsSep: typeof thousandsSep;
         };
         randomRange: typeof randomRange;
+    };
+    other: {
+        angleConvert: typeof angleConvert;
+        bmi: typeof bmi;
+        getTypeName: typeof getTypeName;
+        searchPatternCheck: typeof searchPatternCheck;
+        temperatureConvert: typeof temperatueConvert;
     };
     string: {
         camelize: typeof camelize;

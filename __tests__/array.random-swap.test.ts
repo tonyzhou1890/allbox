@@ -1,5 +1,5 @@
 import randomSwap from '../src/array.random-swap'
-import getTypeName from '../src/common.get-type-name'
+import getTypeName from '../src/other.get-type-name'
 
 describe('function array.random-swap: ', () => {
   test('array random swap: with index', () => {

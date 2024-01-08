@@ -1,4 +1,4 @@
-import getTypeName from './common.get-type-name.js';
+import getTypeName from './other.get-type-name.js';
 import buildTable from './compress.huffman.build-table.js';
 import saveTable from './compress.huffman.save-table.js';
 import buildTrie from './compress.huffman.build-trie.js';

@@ -331,66 +331,6 @@ function reverse(num, bitLength) {
 }
 
 /**
- * @name angleConvert
- * @param {number} value
- * @param {string} sourceType angle type. D(egree)、R(adian)
- * @param {string} targetType like sourceType
- */
-function angleConvert(value, sourceType, targetType) {
-    let target = value;
-    const convertPair = sourceType + targetType;
-    switch (convertPair) {
-        case 'DR':
-            target = (value / 180) * Math.PI;
-            break;
-        case 'RD':
-            target = (value / Math.PI) * 180;
-            break;
-    }
-    return target;
-}
-
-/**
- * @param height unit: cm
- * @param weight unit: kg
- */
-function bmi(height, weight) {
-    return weight / ((height * height) / 10000);
-}
-
-/**
- * @name temperatueConvert
- * @param {number} value
- * @param {string} sourceType temperature type. C(elsius)、F(ahrenheit)、K(elvin)
- * @param {string} targetType like sourceType
- */
-function temperatueConvert(value, sourceType, targetType) {
-    let target = value;
-    const convertPair = sourceType + targetType;
-    switch (convertPair) {
-        case 'CF':
-            target = value * 1.8 + 32;
-            break;
-        case 'CK':
-            target = value + 273.15;
-            break;
-        case 'FC':
-            target = (value - 32) / 1.8;
-            break;
-        case 'FK':
-            target = ((value + 459.67) * 5) / 9;
-            break;
-        case 'KC':
-            target = value - 273.15;
-            break;
-        case 'KF':
-            target = value * 1.8 - 459.67;
-            break;
-    }
-    return target;
-}
-
-/**
  * 生成编码表
  * @param {Trie} trie
  * @returns {CodeNode[]}
@@ -670,6 +610,48 @@ function randomScatter(bound, count) {
 }
 
 /**
+ * @param precise decimal length
+ * @description
+ * ```
+ * Machin's formula
+ * π = 16arctan(1/5) - 4acrtan(1/239)
+ * =>
+ * π/4 = 4 * (1/(1*5^1) - 1/(3*5^3) + 1/(5*5^5) - 1/(7*5^7) + ……) -
+ *       (1/(1*239^1) - 1/(3*239^3) + 1/(5*239^5) - 1/(7*239^7) + ……)
+ * ```
+ */
+function pi(precise = 32) {
+    precise = Math.max(0, precise);
+    let m = 10n;
+    let b1 = 5n;
+    const b1Fac = 5n * 5n;
+    let b2 = 239n;
+    const b2Fac = 239n * 239n;
+    let numerator = 4n * b2 - b1;
+    let denominator = b1 * b2;
+    let fac = 1n;
+    let enlarge = 1n;
+    for (let i = 1; i <= precise; i++) {
+        m *= 10n;
+        fac = 2n * BigInt(i) + 1n;
+        b1 *= b1Fac;
+        b2 *= b2Fac;
+        enlarge = fac * b1 * b2;
+        numerator *= enlarge;
+        if (i % 2 === 1) {
+            numerator -= (4n * b2 - b1) * denominator;
+        }
+        else {
+            numerator += (4n * b2 - b1) * denominator;
+        }
+        denominator *= enlarge;
+    }
+    const p = (4n * m * numerator) / denominator;
+    const decimal = p.toString().substring(1, precise + 1);
+    return precise ? `3.${decimal}` : '3';
+}
+
+/**
  * @param {string} source
  * @param {string[]} sourceTable base table, like [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
  * @param {string[]} targetTable base table, like [0, 1]
@@ -781,6 +763,259 @@ function thousandsSep(num) {
     ]
         .filter(v => v)
         .join('.');
+}
+
+/**
+ * @name angleConvert
+ * @param {number} value
+ * @param {string} sourceType angle type. D(egree)、R(adian)
+ * @param {string} targetType like sourceType
+ */
+function angleConvert(value, sourceType, targetType) {
+    let target = value;
+    const convertPair = sourceType + targetType;
+    switch (convertPair) {
+        case 'DR':
+            target = (value / 180) * Math.PI;
+            break;
+        case 'RD':
+            target = (value / Math.PI) * 180;
+            break;
+    }
+    return target;
+}
+
+/**
+ * @param height unit: cm
+ * @param weight unit: kg
+ */
+function bmi(height, weight) {
+    return weight / ((height * height) / 10000);
+}
+
+const steps = {
+    field: 'field',
+    value: 'value',
+};
+/**
+ * @name patternCompile
+ * @param {SearchPatternCfg} cfg
+ * @param {string} text 输入字符串
+ * @param {boolean} final 是否输入结束
+ * @desc 模式检查，返回模式检查结果以及输入可选项
+ * ```markdown
+ * 检查步骤
+ * 1. 已完成模式（final === true 或者非最后一个模式）
+ *   1.1 非 / 开头--字符串第一个字符
+ *     1.1.1 允许空模式--匹配
+ *     1.1.2 不允许空模式--不匹配
+ *   1.2 / 开头
+ *     1.2.1 模式开始，截止到第一个 : 为 field，尝试匹配
+ *     1.2.2 : 后面为值，连字符拆分，有指定值范围则尝试匹配
+ * 2. 输入中模式（final === false 并且最后一个模式）
+ *   2.1 非 / 开头--字符串第一个字符
+ *     2.1.1 允许空模式--匹配
+ *     2.1.2 不允许空模式--不匹配
+ *   2.2 / 开头
+ *     2.2.1 模式开始，没有 :，用 startsWith 匹配 field，有 : 则完全匹配
+ *     2.2.2 : 后的值，连字符拆分，如果有指定范围，用 startsWith 匹配，否则直接通过
+ * ```
+ */
+function searchPatternCheck(cfg, text, final = false) {
+    text = text.trimStart();
+    const res = {
+        valid: true,
+        patterns: [],
+        step: '',
+        options: [],
+        optional: false,
+    };
+    // 如果左侧不是 / 开头，说明空模式开头，补全模式标识
+    if (text[0] !== '/') {
+        if (text[0] !== ':') {
+            text = ':' + text;
+        }
+    }
+    else {
+        // 去掉开头的 /，因为下面根据 / split 的时候前面会多一个空字符元素
+        text = text.slice(1);
+    }
+    const patternTextArr = text.split('/');
+    // 检测到的模式
+    const patterns = [];
+    // 解析模式
+    for (let i = 0; i < patternTextArr.length; i++) {
+        // 是否在输入中--未完成，且是输入字符串中最后一个模式
+        const typing = !final && i === patternTextArr.length - 1;
+        const pattern = patternParse(cfg, patternTextArr[i], typing);
+        patterns.push(pattern);
+    }
+    // 校验
+    res.patterns = patterns;
+    if (res.patterns.length) {
+        patternValidate(res, final);
+    }
+    console.log(res);
+    return res;
+}
+/**
+ * 解析模式
+ * @param cfg
+ * @param text
+ * @param typing
+ */
+function patternParse(cfg, text, typing) {
+    const segments = text.split(':');
+    const pattern = {
+        field: '',
+        rawValue: '',
+        values: [],
+        valid: true,
+    };
+    // 解析 field
+    const field = parseField(cfg, segments[0], typing && segments.length === 1);
+    Object.assign(pattern, field);
+    // 解析 values
+    pattern.rawValue = segments.slice(1).join(':');
+    // 输入错误，或者输入中，结束解析
+    if (!field.valid || field.step) {
+        return pattern;
+    }
+    if (field.pattern) {
+        const values = parseValues(pattern.pattern, pattern.rawValue, typing);
+        Object.assign(pattern, values);
+    }
+    return pattern;
+}
+function parseField(cfg, fieldText, typing) {
+    const res = {
+        valid: true,
+        field: fieldText,
+    };
+    // 输入中给出输入提示
+    if (typing) {
+        res.step = steps.field;
+        res.options = cfg.patterns
+            ?.filter?.(item => item.field && item.field?.startsWith(fieldText))
+            .map(item => item.field);
+        // 是否可以空模式
+        res.optional = !res.field && cfg.patterns.some(item => !item.field);
+    }
+    else {
+        // 否则找出具体的 pattern
+        res.pattern = cfg.patterns.find(item => item.field === fieldText);
+        res.valid = !!res.pattern;
+    }
+    return res;
+}
+function parseValues(pattern, rawValue, typing) {
+    const res = {
+        values: [],
+        valid: true,
+    };
+    res.multiple = pattern?.multiple;
+    res.seperator = pattern?.seperator || '-';
+    res.presetedValues = pattern?.values;
+    const inputValueList = res.multiple && res.seperator && rawValue
+        ? rawValue.split(res.seperator)
+        : [rawValue].filter(item => item);
+    // 如果输入中，不校验有效性，直接筛选提示
+    if (typing) {
+        res.options = res.presetedValues;
+        res.optional = !pattern?.values?.length;
+        res.step = steps.value;
+    }
+    else {
+        // 如果限定了输入，需要校验输入是否有效
+        if (res.presetedValues?.length) {
+            res.valid = inputValueList.every(item => res.presetedValues?.includes(item));
+            if (!res.valid) {
+                res.step = steps.value;
+            }
+            else {
+                res.values = inputValueList;
+            }
+        }
+        else {
+            res.values = inputValueList;
+        }
+    }
+    return res;
+}
+/**
+ * 校验模式
+ */
+function patternValidate(res, final) {
+    // 找出已经存在的错误
+    const invalidPattern = res.patterns.find(item => !item.valid);
+    if (invalidPattern) {
+        res.valid = false;
+        res.errorPattern = invalidPattern;
+        return res;
+    }
+    // 如果输入中，设置提示信息
+    if (!final) {
+        const pattern = res.patterns.slice(-1)[0];
+        res.step = pattern.step ?? '';
+        res.options = pattern.options ?? [];
+        return res;
+    }
+    // 检查
+    res.patterns.map(item => {
+        // 正确的才继续检查
+        if (item.valid) {
+            // 必填--如果 field 存在，values 必须有值
+            if (item.field && !item.values.length) {
+                item.valid = false;
+                item.step = steps.value;
+            }
+        }
+        if (!item.valid && res.valid) {
+            res.valid = false;
+            res.errorPattern = item;
+        }
+    });
+    // 结果对象
+    const pairs = {};
+    // 如果全部正确，返回
+    res.patterns.map(item => {
+        const key = item.field || 'default';
+        pairs[key] = item.pattern?.multiple ? item.values : item.values[0] ?? '';
+    });
+    res.pairs = pairs;
+    return res;
+}
+
+/**
+ * @name temperatueConvert
+ * @param {number} value
+ * @param {string} sourceType temperature type. C(elsius)、F(ahrenheit)、K(elvin)
+ * @param {string} targetType like sourceType
+ */
+function temperatueConvert(value, sourceType, targetType) {
+    let target = value;
+    const convertPair = sourceType + targetType;
+    switch (convertPair) {
+        case 'CF':
+            target = value * 1.8 + 32;
+            break;
+        case 'CK':
+            target = value + 273.15;
+            break;
+        case 'FC':
+            target = (value - 32) / 1.8;
+            break;
+        case 'FK':
+            target = ((value + 459.67) * 5) / 9;
+            break;
+        case 'KC':
+            target = value - 273.15;
+            break;
+        case 'KF':
+            target = value * 1.8 - 459.67;
+            break;
+    }
+    return target;
 }
 
 const camelizeRE = /-(\w)/g;
@@ -964,12 +1199,6 @@ const Allbox = {
         reverse: reverse,
         setBits: setBits,
     },
-    common: {
-        angleConvert: angleConvert,
-        bmi: bmi,
-        getTypeName: getTypeName,
-        temperatureConvert: temperatueConvert,
-    },
     compress: {
         huffman: {
             buildTable: buildTable,
@@ -984,12 +1213,22 @@ const Allbox = {
         randomScatter: randomScatter,
         vector2Mapping: vector2Mapping,
     },
+    math: {
+        pi: pi,
+    },
     number: {
         baseConvert: baseConvert,
         format: {
             thousandsSep: thousandsSep,
         },
         randomRange: randomRange,
+    },
+    other: {
+        angleConvert: angleConvert,
+        bmi: bmi,
+        getTypeName: getTypeName,
+        searchPatternCheck: searchPatternCheck,
+        temperatureConvert: temperatueConvert,
     },
     string: {
         camelize: camelize,

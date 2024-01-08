@@ -13,10 +13,6 @@ import bitKit_littleEndian_write from './bit-kit.little-endian.write'
 import bitKit_put from './bit-kit.put'
 import bitKit_reverse from './bit-kit.reverse'
 import bitKit_setBits from './bit-kit.set-bits'
-import common_angleConvert from './common.angle-convert'
-import common_bmi from './common.bmi'
-import common_getTypeName from './common.get-type-name'
-import common_temperatureConvert from './common.temperature-convert'
 import compress_huffman_buildTable from './compress.huffman.build-table'
 import compress_huffman_buildTrieFromTable from './compress.huffman.build-trie-from-table'
 import compress_huffman_buildTrie from './compress.huffman.build-trie'
@@ -25,9 +21,15 @@ import compress_huffman_encode from './compress.huffman.encode'
 import compress_huffman_saveTable from './compress.huffman.save-table'
 import graphic_randomScatter from './graphic.random-scatter'
 import graphic_vector2Mapping from './graphic.vector2-mapping'
+import math_pi from './math.pi'
 import number_baseConvert from './number.base-convert'
 import number_format_thousandsSep from './number.format.thousands-sep'
 import number_randomRange from './number.random-range'
+import other_angleConvert from './other.angle-convert'
+import other_bmi from './other.bmi'
+import other_getTypeName from './other.get-type-name'
+import other_searchPatternCheck from './other.search-pattern-check'
+import other_temperatureConvert from './other.temperature-convert'
 import string_camelize from './string.camelize'
 import string_hyphenate from './string.hyphenate'
 import tree_flat from './tree.flat'
@@ -58,12 +60,6 @@ const Allbox = {
     reverse: bitKit_reverse,
     setBits: bitKit_setBits,
   },
-  common: {
-    angleConvert: common_angleConvert,
-    bmi: common_bmi,
-    getTypeName: common_getTypeName,
-    temperatureConvert: common_temperatureConvert,
-  },
   compress: {
     huffman: {
       buildTable: compress_huffman_buildTable,
@@ -78,12 +74,22 @@ const Allbox = {
     randomScatter: graphic_randomScatter,
     vector2Mapping: graphic_vector2Mapping,
   },
+  math: {
+    pi: math_pi,
+  },
   number: {
     baseConvert: number_baseConvert,
     format: {
       thousandsSep: number_format_thousandsSep,
     },
     randomRange: number_randomRange,
+  },
+  other: {
+    angleConvert: other_angleConvert,
+    bmi: other_bmi,
+    getTypeName: other_getTypeName,
+    searchPatternCheck: other_searchPatternCheck,
+    temperatureConvert: other_temperatureConvert,
   },
   string: {
     camelize: string_camelize,

@@ -1,4 +1,4 @@
-import getTypeName from './common.get-type-name'
+import getTypeName from './other.get-type-name'
 import buildTable from './compress.huffman.build-table'
 import saveTable from './compress.huffman.save-table'
 import buildTrie from './compress.huffman.build-trie'

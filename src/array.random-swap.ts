@@ -1,5 +1,5 @@
 import swap from './array.swap'
-import getTypeName from './common.get-type-name'
+import getTypeName from './other.get-type-name'
 
 /**
  * sub numbers

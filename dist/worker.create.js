@@ -1,4 +1,4 @@
-import getTypeName from './common.get-type-name.js';
+import getTypeName from './other.get-type-name.js';
 
 function create(w) {
     const type = getTypeName(w);
