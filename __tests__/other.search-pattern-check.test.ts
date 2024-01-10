@@ -35,4 +35,26 @@ describe('function other.searchPatternCheck: ', () => {
       valid: true,
     })
   })
+  test('other search-pattern-check3: multiple', () => {
+    expect(
+      patternCheck(
+        {
+          patterns: [
+            { field: '' },
+            {
+              field: 'tag',
+            },
+          ],
+        },
+        '/:关键字/tag:novel',
+        true
+      )
+    ).toMatchObject({
+      valid: true,
+      pairs: {
+        default: '关键字',
+        tag: 'novel',
+      },
+    })
+  })
 })

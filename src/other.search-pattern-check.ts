@@ -117,12 +117,13 @@ function searchPatternCheck (cfg: SearchPatternCfg, text: string, final = false)
     const pattern = patternParse(cfg, patternTextArr[i], typing)
     patterns.push(pattern)
   }
+
   // 校验
   res.patterns = patterns
   if (res.patterns.length) {
     patternValidate(res, final)
   }
-  console.log(res)
+
   return res
 }
 
